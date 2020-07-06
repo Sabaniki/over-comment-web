@@ -1,1 +1,11 @@
-<p>comment works!</p>
+<div class="container-fluid">
+  <div class="row mb-5">
+    <div class="input-group mb-auto">
+      <input name="commentText" [(ngModel)]="commentText" (keydown.control.enter)="onClickSendCommentButton()" type="text" class="form-control" placeholder="Comment..." aria-label="Recipient's username" aria-describedby="comment-send-button">
+      <div class="input-group-append">
+        <button class="btn btn-info" type="button" id="comment-send-button" (click)="onClickSendCommentButton()">Send</button>
+      </div>
+    </div>
+  </div>
+  <app-vote></app-vote>
+</div>
