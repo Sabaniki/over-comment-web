@@ -9,12 +9,14 @@ import {AngularFireModule} from '@angular/fire';
 import {firebaseConfig} from '../environments/firebase.secret';
 import {FormsModule} from '@angular/forms';
 import { VoteComponent } from './comment-page/vote/vote.component';
+import { VoteCardComponent } from './comment-page/vote/vote-card/vote-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CommentComponent,
-    VoteComponent
+    VoteComponent,
+    VoteCardComponent
   ],
   imports: [
     BrowserModule,

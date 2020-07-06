@@ -1,1 +1,24 @@
-<p>vote works!</p>
+<ng-container *ngIf="!(voteStatus | async).isVoting">
+  <div class="row">
+    <div class="input-group col-12">
+      <input name="commentText" [(ngModel)]="topicText" type="text"
+             class="form-control" placeholder="Topic..." aria-label="input vote topic">
+    </div>
+  </div>
+
+  <div class="card dark-back mb-5">
+    <ul class="list-group">
+      <ng-container *ngFor="let text of voteChoicesManagerService.voteChoices.texts; let i = index">
+        <li class="list-group-item dark-back">
+          <div class="input-group col-12">
+            <input name="voteChoiceText" [(ngModel)]="voteChoicesManagerService.voteChoices.texts[i]" type="text"
+                   class="form-control" placeholder="Choice {{i}}..." aria-label="input vote choices">
+          </div>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+  <button class="col-12 btn btn-info" (click)="onClickAddChoicesButton()">add choices</button>
+  <button class="col-12 btn btn-outline-danger" (click)="onClickStartVoteButton()">start vote</button>
+</ng-container>
+

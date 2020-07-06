@@ -1,11 +1,28 @@
 <div class="container-fluid">
-  <div class="row mb-5">
-    <div class="input-group mb-auto">
-      <input name="commentText" [(ngModel)]="commentText" (keydown.control.enter)="onClickSendCommentButton()" type="text" class="form-control" placeholder="Comment..." aria-label="Recipient's username" aria-describedby="comment-send-button">
+  <div class="row">
+    <div class="input-group col-12">
+      <input name="commentText" [(ngModel)]="commentText" (keydown.control.enter)="onClickSendCommentButton()"
+             type="text" class="form-control" placeholder="Comment..." aria-label="input your comment"
+             aria-describedby="comment-send-button">
       <div class="input-group-append">
-        <button class="btn btn-info" type="button" id="comment-send-button" (click)="onClickSendCommentButton()">Send</button>
+        <button class="btn btn-info" type="button" id="comment-send-button" (click)="onClickSendCommentButton()">Send
+        </button>
       </div>
     </div>
   </div>
-  <app-vote></app-vote>
+  <div class="row">
+    <div class="col-12"></div>
+  </div>
+  <div class="row">
+    <!--    <app-vote class="col-3"></app-vote>-->
+    <button class="btn btn-info col-3 mx-auto" [disabled]="(voteStatus | async).isVoting" (click)="showVoteComponent = !showVoteComponent">vote</button>
+    <button class="btn btn-info col-3 mx-auto">fuga</button>
+    <button class="btn btn-info col-3 mx-auto">hoge</button>
+    <!--    <button class="btn btn-info col-3 mx-auto">piyo</button>-->
+  </div>
+  <ng-template [ngIf]="showVoteComponent">
+    <div class="row">
+      <app-vote class="col-12"></app-vote>
+    </div>
+  </ng-template>
 </div>
