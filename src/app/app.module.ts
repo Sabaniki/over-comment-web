@@ -10,20 +10,24 @@ import {firebaseConfig} from '../environments/firebase.secret';
 import {FormsModule} from '@angular/forms';
 import { VoteComponent } from './comment-page/vote/vote.component';
 import { VoteCardComponent } from './comment-page/vote/vote-card/vote-card.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { VoteResultComponent } from './comment-page/vote/vote-result/vote-result.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CommentComponent,
     VoteComponent,
-    VoteCardComponent
+    VoteCardComponent,
+    VoteResultComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
 export interface VoteStatus {
-  currentVote: string;
+  currentVoteTopic: string;
   isVoting: boolean;
 }

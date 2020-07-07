@@ -11,18 +11,29 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-12"></div>
+    <div class="col-12 py-2"></div>
   </div>
   <div class="row">
-    <!--    <app-vote class="col-3"></app-vote>-->
-    <button class="btn btn-info col-3 mx-auto" [disabled]="(voteStatus | async).isVoting" (click)="showVoteComponent = !showVoteComponent">vote</button>
-    <button class="btn btn-info col-3 mx-auto">fuga</button>
-    <button class="btn btn-info col-3 mx-auto">hoge</button>
-    <!--    <button class="btn btn-info col-3 mx-auto">piyo</button>-->
+    <button class="btn btn-info col-3 mx-auto" [disabled]="(voteStatusValueChanges | async).isVoting"
+            (click)="showVoteComponent = !showVoteComponent;">vote
+    </button>
+    <button class="btn btn-info col-3 mx-auto">good</button>
+    <button class="btn btn-info col-3 mx-auto">crap</button>
   </div>
   <ng-template [ngIf]="showVoteComponent">
     <div class="row">
+      <div class="col-12 py-2"></div>
+    </div>
+    <div  class="row">
       <app-vote class="col-12"></app-vote>
     </div>
+  </ng-template>
+  <ng-template [ngIf]="(voteStatusValueChanges | async).isVoting">
+    <div class="row"><div class="col-12 py-2"></div></div>
+    <app-vote-card></app-vote-card>
+  </ng-template>
+  <ng-template [ngIf]="!(voteStatusValueChanges | async).isVoting && !showVoteComponent">
+    <div class="row"><div class="col-12 py-2"></div></div>
+    <app-vote-result></app-vote-result>
   </ng-template>
 </div>

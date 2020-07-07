@@ -15,7 +15,7 @@ export class VoteComponent implements OnInit {
   public voteStatus: Observable<VoteStatus>;
   public topicText: string;
 
-  constructor(private afs: AngularFirestore, private voteChoicesManagerService: VoteChoicesManagerService) {
+  constructor(private afs: AngularFirestore, public voteChoicesManagerService: VoteChoicesManagerService) {
   }
 
   ngOnInit(): void {
@@ -25,7 +25,7 @@ export class VoteComponent implements OnInit {
   onClickStartVoteButton() {
     this.afs.collection('vote').doc<VoteChoice>('choices').update(this.voteChoicesManagerService.voteChoices)
       .then(this.voteChoicesManagerService.resetChoice);
-    this.afs.collection('vote').doc<VoteStatus>('status').update({isVoting: true});
+    this.afs.collection('vote').doc<VoteStatus>('status').update({currentVoteTopic: this.topicText, isVoting: true});
   }
 
   onClickAddChoicesButton() {

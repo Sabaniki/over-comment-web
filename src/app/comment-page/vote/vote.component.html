@@ -8,7 +8,7 @@
 
   <div class="card dark-back mb-5">
     <ul class="list-group">
-      <ng-container *ngFor="let text of voteChoicesManagerService.voteChoices.texts; let i = index">
+      <ng-container *ngFor="let point of voteChoicesManagerService.voteChoices.points; let i = index">
         <li class="list-group-item dark-back">
           <div class="input-group col-12">
             <input name="voteChoiceText" [(ngModel)]="voteChoicesManagerService.voteChoices.texts[i]" type="text"

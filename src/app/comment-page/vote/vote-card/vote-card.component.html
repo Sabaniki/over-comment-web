@@ -1,1 +1,10 @@
-<p>vote-card works!</p>
+<h3 class="m-auto dark-back">Now Voting!: {{(voteStatusValueChanges | async).currentVoteTopic}}</h3>
+<ul class="list-group">
+  <ng-container *ngFor="let text of (voteChoicesValueChanges | async).texts; let i = index">
+    <li class="list-group-item dark-back">{{text}}:
+      <button [disabled]="!isFirstVote" class="btn bg-warning float-right text-white" (click)="onClickAddPointButton(i)">+</button>
+      <div class="float-right mr-2">{{(voteChoicesValueChanges | async).points[i]}} point</div>
+    </li>
+  </ng-container>
+</ul>
+<button class="btn btn-danger col-12" (click)="onClickFinishVoteButton()">!finish vote!</button>
