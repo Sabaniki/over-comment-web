@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AngularFirestore} from '@angular/fire/firestore';
-import {VoteStatus} from '../../shared/interfaces/vote-status';
-import {Observable} from 'rxjs';
-import {VoteChoice} from '../../shared/interfaces/vote-choice';
 import {VoteChoicesManagerService} from '../../shared/service/vote-choices-manager.service';
+import {VoteManagerService} from '../../shared/service/vote-manager.service';
+import {CommentManagerService} from '../../shared/service/comment-manager.service';
 
 @Component({
   selector: 'app-vote',
@@ -12,20 +10,23 @@ import {VoteChoicesManagerService} from '../../shared/service/vote-choices-manag
 })
 export class VoteComponent implements OnInit {
 
-  public voteStatus: Observable<VoteStatus>;
   public topicText: string;
 
-  constructor(private afs: AngularFirestore, public voteChoicesManagerService: VoteChoicesManagerService) {
+  constructor(
+    public voteChoicesManagerService: VoteChoicesManagerService,
+    public voteManagerService: VoteManagerService,
+    public commentManagerService: CommentManagerService
+  ) {
   }
 
   ngOnInit(): void {
-    this.voteStatus = this.afs.collection('vote').doc<VoteStatus>('status').valueChanges();
   }
 
   onClickStartVoteButton() {
-    this.afs.collection('vote').doc<VoteChoice>('choices').update(this.voteChoicesManagerService.voteChoices)
+    this.voteManagerService.voteChoicesDoc.update(this.voteChoicesManagerService.voteChoices)
       .then(this.voteChoicesManagerService.resetChoice);
-    this.afs.collection('vote').doc<VoteStatus>('status').update({currentVoteTopic: this.topicText, isVoting: true});
+    this.voteManagerService.voteStatusDoc.update({currentVoteTopic: this.topicText, isVoting: true});
+    this.commentManagerService.sendComment('投票が開始されました！webアプリから投票しましょう！！');
   }
 
   onClickAddChoicesButton() {

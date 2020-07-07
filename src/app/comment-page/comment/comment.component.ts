@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
-import {VoteStatus} from '../../shared/interfaces/vote-status';
-import {Observable} from 'rxjs';
-import {VoteChoice} from '../../shared/interfaces/vote-choice';
 import {ShowVoteComponentFlagManagerService} from '../../shared/service/show-vote-component-flag-manager.service';
+import {CommentManagerService} from '../../shared/service/comment-manager.service';
+import {VoteManagerService} from '../../shared/service/vote-manager.service';
 
 @Component({
   selector: 'app-comment',
@@ -12,26 +10,26 @@ import {ShowVoteComponentFlagManagerService} from '../../shared/service/show-vot
 })
 export class CommentComponent implements OnInit {
 
-  private commentsCollection: AngularFirestoreCollection;
-  private today: Date;
   public commentText: string;
-  public voteStatusValueChanges: Observable<VoteStatus>;
-  public voteChoicesValueChanges: Observable<VoteChoice>;
 
-  constructor(private afs: AngularFirestore, public showVoteComponentFlagManagerService: ShowVoteComponentFlagManagerService) {
+  constructor(
+    public showVoteComponentFlagManagerService: ShowVoteComponentFlagManagerService,
+    public commentManagerService: CommentManagerService,
+    public voteManagerService: VoteManagerService
+  ) {
     showVoteComponentFlagManagerService.value = false;
   }
 
 
   ngOnInit(): void {
-    this.today = new Date();
-    this.commentsCollection = this.afs.collection<Comment>(this.today.toDateString());
-    this.voteStatusValueChanges = this.afs.collection('vote').doc<VoteStatus>('status').valueChanges();
-    this.voteChoicesValueChanges = this.afs.collection('vote').doc<VoteChoice>('choices').valueChanges();
-    console.log(this.today.toDateString());
   }
 
   onClickSendCommentButton() {
-    this.commentsCollection.add({text: this.commentText}).then(() => this.commentText = '');
+    this.commentManagerService.sendComment(this.commentText);
+    this.commentText = '';
+  }
+
+  onClickSendCrapButton() {
+    this.commentManagerService.sendComment('88888888');
   }
 }

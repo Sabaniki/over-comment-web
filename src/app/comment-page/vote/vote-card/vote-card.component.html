@@ -1,9 +1,9 @@
-<h3 class="m-auto dark-back">Now Voting!: {{(voteStatusValueChanges | async).currentVoteTopic}}</h3>
+<h3 class="m-auto dark-back">Now Voting!: {{(voteManagerService.voteStatusValueChanges | async).currentVoteTopic}}</h3>
 <ul class="list-group">
-  <ng-container *ngFor="let text of (voteChoicesValueChanges | async).texts; let i = index">
+  <ng-container *ngFor="let text of (voteManagerService.voteChoicesValueChanges | async).texts; let i = index">
     <li class="list-group-item dark-back">{{text}}:
       <button [disabled]="!isFirstVote" class="btn bg-warning float-right text-white" (click)="onClickAddPointButton(i)">+</button>
-      <div class="float-right mr-2">{{(voteChoicesValueChanges | async).points[i]}} point</div>
+      <div class="float-right mr-2">{{(voteManagerService.voteChoicesValueChanges | async).points[i]}} point</div>
     </li>
   </ng-container>
 </ul>

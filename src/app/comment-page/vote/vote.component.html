@@ -1,4 +1,4 @@
-<ng-container *ngIf="!(voteStatus | async).isVoting">
+<ng-container *ngIf="!(voteManagerService.voteStatusValueChanges | async).isVoting">
   <div class="row">
     <div class="input-group col-12">
       <input name="commentText" [(ngModel)]="topicText" type="text"

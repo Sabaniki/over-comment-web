@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable} from 'rxjs';
-import {VoteStatus} from '../../../shared/interfaces/vote-status';
-import {VoteChoice} from '../../../shared/interfaces/vote-choice';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {VoteManagerService} from '../../../shared/service/vote-manager.service';
 
 @Component({
   selector: 'app-vote-result',
@@ -10,13 +7,11 @@ import {AngularFirestore} from '@angular/fire/firestore';
   styleUrls: ['./vote-result.component.css']
 })
 export class VoteResultComponent implements OnInit {
-  public voteStatusValueChanges: Observable<VoteStatus>;
-  public voteChoicesValueChanges: Observable<VoteChoice>;
-  constructor(private afs: AngularFirestore) { }
+
+  constructor(public voteManagerService: VoteManagerService) { }
 
   ngOnInit(): void {
-    this.voteStatusValueChanges = this.afs.collection('vote').doc<VoteStatus>('status').valueChanges();
-    this.voteChoicesValueChanges = this.afs.collection('vote').doc<VoteChoice>('choices').valueChanges();
+
   }
 
 }
