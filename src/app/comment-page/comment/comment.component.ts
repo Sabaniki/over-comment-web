@@ -3,6 +3,7 @@ import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firest
 import {VoteStatus} from '../../shared/interfaces/vote-status';
 import {Observable} from 'rxjs';
 import {VoteChoice} from '../../shared/interfaces/vote-choice';
+import {ShowVoteComponentFlagManagerService} from '../../shared/service/show-vote-component-flag-manager.service';
 
 @Component({
   selector: 'app-comment',
@@ -14,11 +15,11 @@ export class CommentComponent implements OnInit {
   private commentsCollection: AngularFirestoreCollection;
   private today: Date;
   public commentText: string;
-  public showVoteComponent = false;
   public voteStatusValueChanges: Observable<VoteStatus>;
   public voteChoicesValueChanges: Observable<VoteChoice>;
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore, public showVoteComponentFlagManagerService: ShowVoteComponentFlagManagerService) {
+    showVoteComponentFlagManagerService.value = false;
   }
 
 

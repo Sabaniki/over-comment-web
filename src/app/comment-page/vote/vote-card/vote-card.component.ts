@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {VoteStatus} from '../../../shared/interfaces/vote-status';
 import {VoteChoice} from '../../../shared/interfaces/vote-choice';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Comment} from '../../../shared/interfaces/comment';
+import {ShowVoteComponentFlagManagerService} from '../../../shared/service/show-vote-component-flag-manager.service';
 
 @Component({
   selector: 'app-vote-card',
@@ -15,7 +16,11 @@ export class VoteCardComponent implements OnInit {
   public voteChoicesValueChanges: Observable<VoteChoice>;
   public isFirstVote: boolean;
 
-  constructor(private afs: AngularFirestore) { }
+  constructor(
+    private afs: AngularFirestore,
+    public showVoteComponentFlagManagerService: ShowVoteComponentFlagManagerService
+  ) {
+  }
 
   ngOnInit(): void {
     this.voteStatusValueChanges = this.afs.collection('vote').doc<VoteStatus>('status').valueChanges();
@@ -25,7 +30,9 @@ export class VoteCardComponent implements OnInit {
 
   onClickAddPointButton(i: number) {
     this.voteChoicesValueChanges.subscribe(voteChoices => {
-      if (!this.isFirstVote) { return; }
+      if (!this.isFirstVote) {
+        return;
+      }
       const votePoints = voteChoices.points;
       votePoints[i]++;
       this.afs.collection('vote').doc<VoteChoice>('choices').update({points: votePoints});
@@ -36,5 +43,6 @@ export class VoteCardComponent implements OnInit {
   onClickFinishVoteButton() {
     this.afs.collection<Comment>(new Date().toDateString()).add({text: '投票が終了しました！webアプリを確認してください！！'});
     this.afs.collection('vote').doc<VoteStatus>('status').update({isVoting: false});
+    this.showVoteComponentFlagManagerService.value = false;
   }
 }

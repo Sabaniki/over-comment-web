@@ -15,12 +15,12 @@
   </div>
   <div class="row">
     <button class="btn btn-info col-3 mx-auto" [disabled]="(voteStatusValueChanges | async).isVoting"
-            (click)="showVoteComponent = !showVoteComponent;">vote
+            (click)="showVoteComponentFlagManagerService.value = !showVoteComponentFlagManagerService.value;">vote
     </button>
     <button class="btn btn-info col-3 mx-auto">good</button>
     <button class="btn btn-info col-3 mx-auto">crap</button>
   </div>
-  <ng-template [ngIf]="showVoteComponent">
+  <ng-template [ngIf]="showVoteComponentFlagManagerService.value">
     <div class="row">
       <div class="col-12 py-2"></div>
     </div>
@@ -28,11 +28,11 @@
       <app-vote class="col-12"></app-vote>
     </div>
   </ng-template>
-  <ng-template [ngIf]="(voteStatusValueChanges | async).isVoting">
+  <ng-template [ngIf]="(voteStatusValueChanges | async).isVoting && showVoteComponentFlagManagerService.value">
     <div class="row"><div class="col-12 py-2"></div></div>
     <app-vote-card></app-vote-card>
   </ng-template>
-  <ng-template [ngIf]="!(voteStatusValueChanges | async).isVoting && !showVoteComponent">
+  <ng-template [ngIf]="!(voteStatusValueChanges | async).isVoting && !showVoteComponentFlagManagerService.value">
     <div class="row"><div class="col-12 py-2"></div></div>
     <app-vote-result></app-vote-result>
   </ng-template>
