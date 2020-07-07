@@ -34,7 +34,7 @@ export class VoteCardComponent implements OnInit {
   }
 
   onClickFinishVoteButton() {
-    this.afs.collection<Comment>('comment').add({text: '投票が終了しました！webアプリを確認してください！！'});
+    this.afs.collection<Comment>(new Date().toDateString()).add({text: '投票が終了しました！webアプリを確認してください！！'});
     this.afs.collection('vote').doc<VoteStatus>('status').update({isVoting: false});
   }
 }
