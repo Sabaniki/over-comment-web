@@ -8,9 +8,8 @@ import {CommentConfigManagerService} from '../../../shared/service/comment-confi
   styleUrls: ['./config.component.css']
 })
 export class ConfigComponent implements OnInit {
-  fontSize: number;
 
-  constructor(private commentConfigManagerService: CommentConfigManagerService) { }
+  constructor(public commentConfigManagerService: CommentConfigManagerService) { }
 
   ngOnInit(): void {
   }
