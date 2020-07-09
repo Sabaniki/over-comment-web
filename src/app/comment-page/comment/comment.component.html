@@ -14,12 +14,21 @@
     <div class="col-12 py-2"></div>
   </div>
   <div class="row">
-    <button class="btn btn-info col-3 mx-auto" [disabled]="(voteManagerService.voteStatusValueChanges | async).isVoting"
+    <button class="btn btn-info col-2 mx-auto" [disabled]="(voteManagerService.voteStatusValueChanges | async).isVoting"
             (click)="showVoteComponentFlagManagerService.value = !showVoteComponentFlagManagerService.value;">vote
     </button>
-    <button class="btn btn-info col-3 mx-auto">good</button>
-    <button class="btn btn-info col-3 mx-auto" (click)="onClickSendCrapButton()">crap</button>
+    <button class="btn btn-info col-2 mx-auto" (click)="onClickSendGrassButton()">www</button>
+    <button class="btn btn-info col-2 mx-auto" (click)="onClickSendCrapButton()">crap</button>
+    <button class="btn btn-info col-2 mx-auto" (click)="isShowConfig = !isShowConfig">config</button>
   </div>
+  <ng-template [ngIf]="isShowConfig">
+    <div class="row">
+      <div class="col-12 py-2"></div>
+    </div>
+    <div  class="row">
+      <app-config></app-config>
+    </div>
+  </ng-template>
   <ng-template [ngIf]="!(voteManagerService.voteStatusValueChanges | async).isVoting && showVoteComponentFlagManagerService.value">
     <div class="row">
       <div class="col-12 py-2"></div>

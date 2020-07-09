@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-sm-5 mx-auto">
+    color config
+    <color-sketch (onChangeComplete)="onChangeColorComplete($event)"></color-sketch>
+  </div>
+  <div class="col-sm-5 mx-auto">
+    <div class="row">
+      <div class="col-12">
+        font size config
+      </div>
+      <div class="input-group col-12">
+        <input name="commentText" [(ngModel)]="commentConfigManagerService.fontSize"
+               type="number" class="form-control" placeholder="Change font size..." aria-label="input new font size">
+      </div>
+      <div class="col-12" [style.font-size.px]="commentConfigManagerService.fontSize" [style.color]="commentConfigManagerService.fontColor">
+        sample text
+      </div>
+    </div>
+  </div>
+</div>

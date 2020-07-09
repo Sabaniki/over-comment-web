@@ -11,6 +11,7 @@ import {VoteManagerService} from '../../shared/service/vote-manager.service';
 export class CommentComponent implements OnInit {
 
   public commentText: string;
+  public isShowConfig: boolean;
 
   constructor(
     public showVoteComponentFlagManagerService: ShowVoteComponentFlagManagerService,
@@ -18,6 +19,7 @@ export class CommentComponent implements OnInit {
     public voteManagerService: VoteManagerService
   ) {
     showVoteComponentFlagManagerService.value = false;
+    this.isShowConfig = false;
   }
 
 
@@ -31,5 +33,9 @@ export class CommentComponent implements OnInit {
 
   onClickSendCrapButton() {
     this.commentManagerService.sendComment('88888888');
+  }
+
+  onClickSendGrassButton() {
+    this.commentManagerService.sendComment('www');
   }
 }

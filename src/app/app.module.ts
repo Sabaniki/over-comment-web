@@ -12,6 +12,8 @@ import { VoteComponent } from './comment-page/vote/vote.component';
 import { VoteCardComponent } from './comment-page/vote/vote-card/vote-card.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { VoteResultComponent } from './comment-page/vote/vote-result/vote-result.component';
+import { ConfigComponent } from './comment-page/config/config/config.component';
+import {ColorSketchModule} from 'ngx-color/sketch';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { VoteResultComponent } from './comment-page/vote/vote-result/vote-result
     CommentComponent,
     VoteComponent,
     VoteCardComponent,
-    VoteResultComponent
+    VoteResultComponent,
+    ConfigComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,8 @@ import { VoteResultComponent } from './comment-page/vote/vote-result/vote-result
     RouterModule,
     AngularFireModule.initializeApp(firebaseConfig),
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ColorSketchModule
   ],
   providers: [],
   bootstrap: [AppComponent]
