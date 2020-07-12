@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ShowVoteComponentFlagManagerService} from '../../shared/service/show-vote-component-flag-manager.service';
 import {CommentManagerService} from '../../shared/service/comment-manager.service';
 import {VoteManagerService} from '../../shared/service/vote-manager.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-comment',
@@ -16,7 +17,8 @@ export class CommentComponent implements OnInit {
   constructor(
     public showVoteComponentFlagManagerService: ShowVoteComponentFlagManagerService,
     public commentManagerService: CommentManagerService,
-    public voteManagerService: VoteManagerService
+    public voteManagerService: VoteManagerService,
+    private router: Router
   ) {
     showVoteComponentFlagManagerService.value = false;
     this.isShowConfig = false;
@@ -37,5 +39,9 @@ export class CommentComponent implements OnInit {
 
   onClickSendGrassButton() {
     this.commentManagerService.sendComment('www');
+  }
+
+  onClickGoCommentHistoryButton() {
+    this.router.navigate(['history']);
   }
 }
