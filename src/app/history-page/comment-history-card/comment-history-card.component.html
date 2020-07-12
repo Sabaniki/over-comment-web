@@ -1,0 +1,9 @@
+<ul class="list-group">
+  <ng-container *ngFor="let comment of (commentHistoryService.commentHistoryValueChanges | async); let i = index">
+    <li class="list-group-item dark-back">{{comment.text}}
+      <div class="float-right mr-2">
+        {{comment.createdAt.toDate() | date: 'HH:mm:ss'}}
+      </div>
+    </li>
+  </ng-container>
+</ul>
