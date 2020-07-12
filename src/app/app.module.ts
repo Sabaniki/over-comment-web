@@ -7,7 +7,7 @@ import {CommentComponent} from './comment-page/comment/comment.component';
 import {RouterModule} from '@angular/router';
 import {AngularFireModule} from '@angular/fire';
 import {firebaseConfig} from '../environments/firebase.secret';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {VoteComponent} from './comment-page/vote/vote.component';
 import {VoteCardComponent} from './comment-page/vote/vote-card/vote-card.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -17,6 +17,11 @@ import {ColorSketchModule} from 'ngx-color/sketch';
 import {CommentHistoryComponent} from './history-page/comment-history/comment-history.component';
 import {registerLocaleData} from '@angular/common';
 import localeJa from '@angular/common/locales/ja';
+import { CommentHistoryCardComponent } from './history-page/comment-history-card/comment-history-card.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
+import {MatNativeDateModule} from '@angular/material/core';
 
 registerLocaleData(localeJa);
 
@@ -28,7 +33,8 @@ registerLocaleData(localeJa);
     VoteCardComponent,
     VoteResultComponent,
     ConfigComponent,
-    CommentHistoryComponent
+    CommentHistoryComponent,
+    CommentHistoryCardComponent
   ],
   imports: [
     BrowserModule,
@@ -37,10 +43,15 @@ registerLocaleData(localeJa);
     AngularFireModule.initializeApp(firebaseConfig),
     FormsModule,
     BrowserAnimationsModule,
-    ColorSketchModule
+    ColorSketchModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatNativeDateModule
   ],
   providers: [
-    {provide: LOCALE_ID, useValue: 'ja-JP'}
+    {provide: LOCALE_ID, useValue: 'en-US'}
   ],
   bootstrap: [AppComponent]
 })

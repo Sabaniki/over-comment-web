@@ -12,11 +12,15 @@ export class CommentHistoryService {
   public targetDate: Date;
 
   constructor(private afs: AngularFirestore) {
-    this.commentHistoryCollection = afs.collection<Comment>(
-      new Date().toDateString(),
-      ref => ref.orderBy('createdAt', 'asc')
+    this.targetDate = new Date();
+    this.changeTargetDate(new Date());
+  }
+
+  public changeTargetDate(date: Date) {
+    this.commentHistoryCollection = this.afs.collection<Comment>(
+      date.toDateString(),
+      ref => ref.orderBy('createdAt', 'desc')
     );
     this.commentHistoryValueChanges = this.commentHistoryCollection.valueChanges();
-    this.targetDate = new Date();
   }
 }

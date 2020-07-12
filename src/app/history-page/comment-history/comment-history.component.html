@@ -1,14 +1,12 @@
 <div class="container-fluid">
-  <div class="col-12">
-    <h3 class="m-auto dark-back text-center">{{commentHistoryService.targetDate | date: 'shortDate'}}</h3>
-    <ul class="list-group">
-      <ng-container *ngFor="let comment of (commentHistoryService.commentHistoryValueChanges | async); let i = index">
-        <li class="list-group-item dark-back">{{comment.text}}
-          <div class="float-right mr-2">
-            {{comment.createdAt.toDate() | date: 'HH:mm:ss'}}
-          </div>
-        </li>
-      </ng-container>
-    </ul>
-  </div>
+  <button class="btn btn-info col-4" (click)="onClickBackCommentPageButton()"><-- Comment Page</button>
+  <div class="col-12 py-2"></div>
+  <mat-form-field class="col-12">
+    <input matInput [matDatepicker]="picker" [formControl]="date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker (closed)="updateDate()"></mat-datepicker>
+  </mat-form-field>
+  <div class="col-12 py-2"></div>
+  <app-comment-history-card></app-comment-history-card>
 </div>
+

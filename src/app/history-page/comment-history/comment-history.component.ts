@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CommentHistoryService} from '../../shared/service/comment-history.service';
+import {Router} from '@angular/router';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-comment-history',
@@ -7,13 +9,24 @@ import {CommentHistoryService} from '../../shared/service/comment-history.servic
   styleUrls: ['./comment-history.component.css']
 })
 export class CommentHistoryComponent implements OnInit {
-  public today: Date;
   constructor(
-    public commentHistoryService: CommentHistoryService
-  ) { }
-
-  ngOnInit(): void {
-    this.today = new Date();
+    public commentHistoryService: CommentHistoryService,
+    private router: Router
+  ) {
   }
 
+  date = new FormControl(new Date());
+
+  ngOnInit(): void {
+    this.commentHistoryService.targetDate = new Date();
+  }
+
+  onClickBackCommentPageButton() {
+    this.router.navigate(['comments']);
+  }
+
+  public updateDate() {
+    this.commentHistoryService.changeTargetDate(this.date.value);
+  }
 }
+

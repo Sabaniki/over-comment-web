@@ -3,6 +3,7 @@ import {ShowVoteComponentFlagManagerService} from '../../shared/service/show-vot
 import {CommentManagerService} from '../../shared/service/comment-manager.service';
 import {VoteManagerService} from '../../shared/service/vote-manager.service';
 import {Router} from '@angular/router';
+import {CommentHistoryService} from '../../shared/service/comment-history.service';
 
 @Component({
   selector: 'app-comment',
@@ -18,10 +19,12 @@ export class CommentComponent implements OnInit {
     public showVoteComponentFlagManagerService: ShowVoteComponentFlagManagerService,
     public commentManagerService: CommentManagerService,
     public voteManagerService: VoteManagerService,
-    private router: Router
+    private router: Router,
+    private commentHistoryService: CommentHistoryService
   ) {
     showVoteComponentFlagManagerService.value = false;
     this.isShowConfig = false;
+    commentHistoryService.changeTargetDate(new Date());
   }
 
 
