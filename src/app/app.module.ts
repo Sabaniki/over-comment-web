@@ -34,7 +34,7 @@ registerLocaleData(localeJa);
     VoteResultComponent,
     ConfigComponent,
     CommentHistoryComponent,
-    CommentHistoryCardComponent
+    CommentHistoryCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +51,7 @@ registerLocaleData(localeJa);
     MatNativeDateModule
   ],
   providers: [
-    {provide: LOCALE_ID, useValue: 'en-US'}
+    {provide: LOCALE_ID, useValue: 'ja-JP'}
   ],
   bootstrap: [AppComponent]
 })

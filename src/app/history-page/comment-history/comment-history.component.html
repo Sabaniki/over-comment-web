@@ -1,12 +1,17 @@
 <div class="container-fluid">
   <button class="btn btn-info col-4" (click)="onClickBackCommentPageButton()"><-- Comment Page</button>
   <div class="col-12 py-2"></div>
+</div>
+
+<div class="container-fluid">
   <mat-form-field class="col-12">
-    <input matInput [matDatepicker]="picker" [formControl]="date">
+    <input matInput [matDatepicker]="picker" [formControl]="date" aria-label="date-time-picker">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker (closed)="updateDate()"></mat-datepicker>
   </mat-form-field>
+</div>
+
+<div class="container-fluid">
   <div class="col-12 py-2"></div>
   <app-comment-history-card></app-comment-history-card>
 </div>
-
