@@ -5,9 +5,9 @@
 
 <div class="container-fluid">
   <mat-form-field class="col-12">
-    <input matInput [matDatepicker]="picker" [formControl]="date" aria-label="date-time-picker">
+    <input (dateChange)="updateDate()" matInput [matDatepicker]="picker" [formControl]="date" aria-label="date-time-picker">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker (closed)="updateDate()"></mat-datepicker>
+    <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 </div>
 
