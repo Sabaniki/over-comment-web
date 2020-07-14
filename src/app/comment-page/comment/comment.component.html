@@ -54,11 +54,11 @@
     </div>
     <app-vote-card></app-vote-card>
   </ng-template>
-  <!--  <ng-template-->
-  <!--    [ngIf]="!(voteManagerService.voteStatusValueChanges | async).isVoting && !showVoteComponentFlagManagerService.value">-->
-  <!--    <div class="row">-->
-  <!--      <div class="col-12 py-2"></div>-->
-  <!--    </div>-->
-  <!--    <app-vote-result></app-vote-result>-->
-  <!--  </ng-template>-->
+    <ng-template
+      [ngIf]="!(voteManagerService.voteStatusValueChanges | async).isVoting && !showVoteComponentFlagManagerService.value">
+      <div class="row">
+        <div class="col-12 py-4"></div>
+      </div>
+      <app-vote-result></app-vote-result>
+    </ng-template>
 </div>
